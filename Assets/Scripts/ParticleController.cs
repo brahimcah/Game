@@ -7,7 +7,7 @@ public class ParticleController : MonoBehaviour {
 	public ParticleSystem particleSystem;
 	private int prevHpPotion; 
 
-
+ 
 	void Awake ()
 	{
 		var main = particleSystem.main;

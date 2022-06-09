@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndScript : MonoBehaviour {
 
-
+ 
 	
 	// Update is called once per frame
 	void Update () {

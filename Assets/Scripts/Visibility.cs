@@ -6,7 +6,7 @@ public class Visibility : MonoBehaviour {
 
 	public GameObject player;
 	public float alphalevel;
-
+ 
 	private bool skip1;
 	private bool skip2;
 	private bool skip3;

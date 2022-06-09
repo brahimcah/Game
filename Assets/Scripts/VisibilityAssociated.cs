@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisibilityAssociated : MonoBehaviour {
 
-	public GameObject vis;
+	public GameObject vis; 
 
 	// Use this for initialization
 	void Start () {

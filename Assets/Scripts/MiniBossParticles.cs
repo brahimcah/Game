@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniBossParticles : MonoBehaviour {
 	public GameObject miniboss;
-	public ParticleSystem particleSystem;
+	public ParticleSystem particleSystem; 
 	private int prevAnimatorInt; 
 
 	void Awake ()

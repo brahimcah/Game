@@ -7,7 +7,7 @@ public class Elevator : MonoBehaviour {
 	public GameObject platform;
 	public bool activated;
 
-	public Vector3 pos;
+	public Vector3 pos; 
 	public Vector3 pos2;
 
 	// Use this for initialization

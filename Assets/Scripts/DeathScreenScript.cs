@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreenScript : MonoBehaviour {
 
-	public Button restart;
+	public Button restart; 
 	public Button menu;
 
 	// Use this for initialization

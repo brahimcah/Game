@@ -19,7 +19,7 @@ public class Lever : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
+	// Update is called once per frame 
 	void Update () {
 		if (levertype == "rotateplatform") { //rotate the platform
 			if (activated == true && state == false) {

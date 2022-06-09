@@ -5,7 +5,7 @@ using UnityEngine;
 public class CastBox : MonoBehaviour {
 	public GameObject player;
 
-	// Use this for initialization
+	// Use this for initialization 
 	void Start () {
 	}
 

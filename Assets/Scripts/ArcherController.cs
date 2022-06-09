@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,14 +20,14 @@ public class ArcherController : MonoBehaviour {
 	private RaycastHit hit;
 	private int newfaceDirection;
 
-	// Use this for initialization
+	// Cream la inicialitzacio
 	void Start () {
 		audio = GetComponent<AudioSource> ();
 		dead = false;
 		dmgd = false;
 	}
 	
-	// Update is called once per frame
+	// Anem actualitzant en cada frame 
 	void Update () {
 		Vector3 playerpos = player.transform.position;
 		Vector3 enemypos = transform.position;
@@ -40,15 +40,16 @@ public class ArcherController : MonoBehaviour {
 			animator.SetInteger ("alert", 0);
 		}
 
-		if (playerpos.y == enemypos.y && distance <= alertdistance && !dead && !dmgd) { //must be from same level to recognize player and distance between enemy and player must be less than 10 tiles away
-			if (playerpos.x == enemypos.x) {
-				if (playerpos.z > enemypos.z) { //player at top left
+		if (playerpos.y == enemypos.y && distance <= alertdistance && !dead && !dmgd) { 
+            //ha de ser del mateix nivell per reconèixer el jugador i la distància entre l'enemic i el jugador ha d'estar a menys de la distancia asignada
+                if (playerpos.x == enemypos.x) {
+				if (playerpos.z > enemypos.z) { //Arquer a la part superior esquerra
 					bool blocked = Physics.Linecast (enemypos, playerpos, out hit, 1 << 8);
 					if(hit.collider.gameObject == playerModel){
 						animator.SetInteger ("alert", 2);
 					}
 					newfaceDirection = 3;
-				} else { // player at bottom right
+				} else { // Arquer a la part inferior dreta
 					bool blocked = Physics.Linecast (enemypos, playerpos, out hit, 1 << 8);
 					if(hit.collider.gameObject == playerModel){
 						animator.SetInteger ("alert", 2);
@@ -57,13 +58,13 @@ public class ArcherController : MonoBehaviour {
 				}
 			}
 			else if (playerpos.z == enemypos.z) {
-				if (playerpos.x > enemypos.x) { // player at top right
+				if (playerpos.x > enemypos.x) { // Arquer a la part superior dreta
 					bool blocked = Physics.Linecast (enemypos, playerpos, out hit, 1 << 8);
 					if(hit.collider.gameObject == playerModel){
 						animator.SetInteger ("alert", 2);
 					}
 					newfaceDirection = 2;
-				} else { // player at bottom left
+				} else { // Arquer a la part superior esquerra
 					bool blocked = Physics.Linecast (enemypos, playerpos, out hit, 1 << 8);
 					if (blocked) {
 						if (hit.collider.gameObject == playerModel) {
@@ -73,14 +74,14 @@ public class ArcherController : MonoBehaviour {
 					newfaceDirection = 0;
 				}
 			}
-			if (Mathf.Abs (playerpos.x - enemypos.x) >= Mathf.Abs (playerpos.z - enemypos.z)) { // if distance btwn x is greater than distance btwn z
-				if (playerpos.x > enemypos.x) { //if player is behind enemy
+			if (Mathf.Abs (playerpos.x - enemypos.x) >= Mathf.Abs (playerpos.z - enemypos.z)) { // si la distància entre x és més gran que la distància entre z no ataca el enemic
+				if (playerpos.x > enemypos.x) { //si el jugador està darrere de l'enemic el enemic es gira
 					newfaceDirection = 2;
 				} else {
 					newfaceDirection = 0;
 				}
-			} else { // if distance btwn z is greater than distance btwn x
-				if (playerpos.z > enemypos.z) { //if player is left of enemy
+			} else { // si la distància entre z és major que la distància entre x 
+				if (playerpos.z > enemypos.z) { //si el jugador esta a la esquerra de l'enemic el enemic es gira
 					newfaceDirection = 3;
 				} else {
 					newfaceDirection = 1;
@@ -96,6 +97,7 @@ public class ArcherController : MonoBehaviour {
 		}
 	}
 	
+	//Cream una clase Shoot el cual serveix per disparar
 	public void Shoot(){
 		Vector3 arrowpos = transform.position;
 		int dir = 0;

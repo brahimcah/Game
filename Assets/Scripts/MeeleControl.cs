@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -117,6 +117,7 @@ public class MeeleControl : MonoBehaviour {
 				chase ();
 			} 
 		}
+		//Atacs del enemics
 		if (!attacking) {
 			if (((Mathf.Abs (transform.position.y - target.transform.position.y) <= 2) && transform.position.y == target.transform.position.y)) {
 				if (((Mathf.Abs (transform.position.x - target.transform.position.x) <= 2) && transform.position.z == target.transform.position.z) ||
@@ -151,19 +152,19 @@ public class MeeleControl : MonoBehaviour {
 	{
 		Vector3 curr = tr.position;
 		print ("attack");
-		if (faceDirection == 0) { //forward
+		if (faceDirection == 0) { //endavant
 			if (playerTransform.position.x == transform.position.x + 2.0f && Mathf.Abs (transform.position.z - target.transform.position.z) <= 1.3f) {
 				target.GetComponent<PlayerControl> ().damaged (30);
 			}
-		} else if (faceDirection == 1) { //left
+		} else if (faceDirection == 1) { //esquerra
 			if (playerTransform.position.z == transform.position.z + 2.0f && Mathf.Abs (transform.position.x - target.transform.position.x) <= 1.3f) {
 				target.GetComponent<PlayerControl> ().damaged (30);
 			}
-		} else if (faceDirection == 2) { //backward
+		} else if (faceDirection == 2) { //cap enrere
 			if (playerTransform.position.x == transform.position.x - 2.0f && Mathf.Abs (transform.position.z - target.transform.position.z) <= 1.3f) {
 				target.GetComponent<PlayerControl> ().damaged (30);
 			}
-		} else if (faceDirection == 3) { // right
+		} else if (faceDirection == 3) { // dreta
 			if (playerTransform.position.z == transform.position.z - 2.0f && Mathf.Abs (transform.position.x - target.transform.position.x) <= 1.3f) {
 				target.GetComponent<PlayerControl> ().damaged (30);
 			}
@@ -235,7 +236,7 @@ public class MeeleControl : MonoBehaviour {
 
 		//transform.LookAt(target.transform);
 
-		if (direction == 4 && tr.position == pos2) { // moving right
+		if (direction == 4 && tr.position == pos2) { // movent-se a la dreta
 			if (rightBlocked && hitObjectRight.collider.tag == "stair") {
 				if ((tr.transform.position.y - 1) % 4 == 0) {
 					pos += 1 * Vector3.back; 
@@ -270,7 +271,7 @@ public class MeeleControl : MonoBehaviour {
 			}
 			newfaceDirection = 3;
 		}
-		if (direction == 2 && tr.position == pos2) { // moving left
+		if (direction == 2 && tr.position == pos2) { // movent-se a l'esquerra
 			if (leftBlocked && hitObjectLeft.collider.tag == "stair") {
 				if ((tr.transform.position.y - 1) % 4 == 1) {
 					pos += 1 * Vector3.forward; 
@@ -305,7 +306,7 @@ public class MeeleControl : MonoBehaviour {
 			}
 			newfaceDirection = 1;
 		}
-		if (direction == 1 && tr.position == pos2) { // moving forward
+		if (direction == 1 && tr.position == pos2) { // avançant
 			if (forwardBlocked && hitObjectForward.collider.tag == "stair") {
 				if ((tr.transform.position.y - 1) % 4 == 0) {
 					pos += 1 * Vector3.right; 
@@ -340,7 +341,7 @@ public class MeeleControl : MonoBehaviour {
 			}
 			newfaceDirection = 0;
 		}
-		if (direction == 3 && tr.position == pos2) { // moving back
+		if (direction == 3 && tr.position == pos2) { // mours cap enrera
 			if (backBlocked && hitObjectBack.collider.tag == "stair") {
 				if ((tr.transform.position.y - 1) % 4 == 0) {
 					pos += 1 * Vector3.left; 
@@ -378,14 +379,14 @@ public class MeeleControl : MonoBehaviour {
 			
 		moveNormal();
 
-		transform.Rotate (0, 90 * (faceDirection - newfaceDirection), 0); // rotate to face the correct direction
+		transform.Rotate (0, 90 * (faceDirection - newfaceDirection), 0); // girar per mirar la direcció correcta
 		faceDirection = newfaceDirection;
 
 		if (stop == true) {
 			animator.SetInteger ("enemymove", 0);
 		}
 
-		if (transform.position == pos2) { // if the character reaches destination, start idle animation
+		if (transform.position == pos2) { // si el personatge arriba a la destinació, comença l'animació inactiva
 			stop = false;
 			if (((Mathf.Abs (transform.position.x - target.transform.position.x) <= 2) && transform.position.z == target.transform.position.z) || ((Mathf.Abs (transform.position.z - target.transform.position.z) <= 2) && transform.position.x == target.transform.position.x )) { 
 				animator.SetInteger ("enemymove", 0);
@@ -398,7 +399,7 @@ public class MeeleControl : MonoBehaviour {
 		if (colliderNextBlock.transform.position != pos) {
 			colliderNextBlock.transform.position = pos;
 		}
-			animator.SetInteger ("enemymove", 1); // walking animation
+			animator.SetInteger ("enemymove", 1); // fem caminar el personatge
 			transform.position = Vector3.MoveTowards (transform.position, pos, Time.deltaTime * walkspeed);
 			//if (transform.position == pos)
 

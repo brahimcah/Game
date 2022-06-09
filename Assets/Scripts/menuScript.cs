@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,6 @@ public class menuScript : MonoBehaviour {
 	public Canvas creditscreen;
 	public AudioSource audio;
 
-	// Use this for initialization
 	void Start () {
 
 		ctrlscreen.GetComponent<Canvas>();
@@ -37,7 +36,7 @@ public class menuScript : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
+	/
 	void Update () {
 		
 	}
